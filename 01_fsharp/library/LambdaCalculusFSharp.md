@@ -84,9 +84,58 @@ let rec inputAndRespond () =
 inputAndRespond ()
 ```
 
-本ファイルでは、1つの再帰的関数が定義されています。この関数はユーザからの入力を受け取り、それを構文解析(`parse`)して、その結果で処理を分岐しています。
+本ファイルでは、1つの再帰的関数が定義されています。この関数はユーザからの入力を受け取り、それを構文解析(`parse`)して、その結果で処理を分岐しています。次に、`parse`メソッドが実装されている、`LambdaCalculus/Parsing/Parsing.fs`を見ていきます。
 
 `LambdaCalculus/LambdaCalculus/Parsing/Parsing.fs`
 
-- `parse`
-- `parseInner`
+`parse`の実装は次です：
+
+```fs
+let parse (s : string) =
+  s
+  |> (fun s -> s.Replace("λ", "\\"))
+  |> (fun s -> s.Replace(" ", ""))
+  |> List.ofSeq
+  |> parseInner
+```
+
+`List.ofSeq`の1行前までは、文字の置き換えが行われるだけの単純な処理です。
+
+```fs
+  // "\x.x+2"
+  "λx.x + 2"
+  |> (fun s -> s.Replace("λ", "\\"))
+  |> (fun s -> s.Replace(" ", ""))
+```
+
+`List.ofSeq`は、[シーケンスからリストを生成する変換関数](https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#ofSeq)です。
+
+```fs
+// ['\\'; 'x'; '.'; 'x'; '+'; '2']
+"\x.x+2" |> List.ofSeq
+```
+
+この結果に対して、`parseInner`という関数を適用しています。本関数も、同一のファイルに実装されています。
+
+```fs
+let rec parseInner s : Result<Expression, string> =
+  match s with
+  | [] -> Error "Empty input"
+
+  | [ ValidVariable x ] -> Ok (Variable x)
+
+  | other ->
+    let rec blockApplier applied blocks =
+      match blocks with
+      | [] -> applied |> Ok
+      | hd::rest -> blockApplier (Applied(applied, hd)) rest
+
+    opt {
+      let! blocks = blocksParse other
+      let res = 
+        match blocks with
+        | hd::tl -> blockApplier hd tl
+        | _ -> Error "Empty block"
+      return! res
+    }
+```
