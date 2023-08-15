@@ -16,4 +16,4 @@ current output |> next output
 
 ## Remark
 
-This repository is not uploaded to any static site. It is intended to be read on GitHub for simplicity (and tediousness).
+This repository is not uploaded to any static site. It is intended to be read on GitHub for simplicity (and tediousness). If you want to know the latest documentation, you can check it by looking at the [commit history](https://github.com/shirakurak/pipe/commits/main).
