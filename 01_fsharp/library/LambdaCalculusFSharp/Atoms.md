@@ -3,6 +3,21 @@
 `LambdaCalculus/Atoms.fs`
 
 ```fs
+type Variable = char
+```
+
+`char`のエイリアスとして、`Variable`型を定義しています。
+
+```fs
+type Expression =
+  | Variable of Variable
+  | Lambda of Head : Variable * Body : Expression
+  | Applied of Lambda : Expression * Arugument : Expression
+```
+
+`Expression`型が、ラムダ式を表している。
+
+```fs
 let rec betaReduce expr : ReductionResult =
   let rec betaReduceInner expr : Expression =
   ...

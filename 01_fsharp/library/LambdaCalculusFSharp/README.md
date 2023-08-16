@@ -34,6 +34,15 @@ tree .
 
 ファイル数は多くなく、テストファイルやWeb用ファイルを除くと、読むべきなのは10ファイル程度となります。
 
+## コードリーディング
+
+各ファイルに対応したメモは以下です：
+
+- [Atoms.md](./Atoms.md)
+- [Parsing.md](./Parsing.md)
+- [Program.md](./Program.md)
+- [TextParsing.md](./TextParsing.md)
+
 ## 設計図
 
 - 入力を受け取る
