@@ -2,8 +2,6 @@
 
 printfn "start"
 
-// type Variable = char
-
 // ラムダ式の定義
 type Lambda =
   | Variable of char
@@ -20,5 +18,12 @@ let E_2 = Abstraction('v', E_1) // λv.(λu.u)
 // 例3（関数適用）
 let a = Variable('a')
 let E = Application(E_1, a) // (λu.u)a
+
+// 深さ
+let rec calLambdaDepth (e : Lambda) =
+  match e with
+  | Variable(u) -> 1
+  | Abstraction(u, e1) -> 1 + calLambdaDepth(e1)
+  | Application(e1, e2) -> calLambdaDepth(e1) + calLambdaDepth(e2)
 
 printfn "goal"
