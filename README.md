@@ -9,6 +9,7 @@ There are various documents regarding my daily studies, events I have participat
 Contents:
 
 - F#
+- mathematical logic
 
 ## Why pipe ?
 

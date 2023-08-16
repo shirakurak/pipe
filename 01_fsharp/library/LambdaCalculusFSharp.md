@@ -132,7 +132,7 @@ let rec parseInner s : Result<Expression, string> =
 
     opt {
       let! blocks = blocksParse other
-      let res = 
+      let res =
         match blocks with
         | hd::tl -> blockApplier hd tl
         | _ -> Error "Empty block"
