@@ -2,7 +2,7 @@
 
 [LambdaCalculusFSharp](https://github.com/WhiteBlackGoose/LambdaCalculusFSharp/tree/main)は、pureなF#で書かれた、ラムダ計算のライブラリです。本記事では、リバースエンジニアリングによる設計図の理解を目的とします。
 
-## 実装
+## コードリーディング
 
 ### ディレクトリ構造
 
@@ -57,7 +57,9 @@ tree .
 
 ファイル数は多くなく、テストファイルやWeb用ファイルを除くと、読むべきなのは10ファイル程度となります。
 
-### コードリーディング
+---
+
+### `Program.fs`
 
 出発点である、`LambdaCalculusConsole/Program.fs`から読んでいきます。
 
@@ -86,6 +88,10 @@ inputAndRespond ()
 
 本ファイルでは、1つの再帰的関数が定義されています。この関数はユーザからの入力を受け取り、それを構文解析(`parse`)して、その結果で処理を分岐しています。次に、`parse`メソッドが実装されている、`LambdaCalculus/Parsing/Parsing.fs`を見ていきます。
 
+---
+
+### `Parsing.fs`
+
 `LambdaCalculus/LambdaCalculus/Parsing/Parsing.fs`
 
 `parse`の実装は次です：
@@ -113,7 +119,7 @@ let parse (s : string) =
 "\x.x+2" |> List.ofSeq // ['\\'; 'x'; '.'; 'x'; '+'; '2']
 ```
 
-このように、入力に対してパースするために、まずは、構成している文字のリストを生成しています。リストに対して、`parseInner`という関数を適用しています。本関数も、同一のファイルに実装されています。
+このように、入力に対してパースするために、まずは構成している文字のリストを生成しています。リストに対して、`parseInner`という関数を適用しています。本関数も、同一のファイルに実装されています。
 
 ```fs
 let rec parseInner s : Result<Expression, string> =
@@ -153,6 +159,10 @@ let rec parseInner s : Result<Expression, string> =
 
 リストが空の場合は、エラーとして扱います。2つ目のパターンで使用されている関数`ValidVariable`は、同じ`Parsing`配下の別ファイルで定義されています。
 
+---
+
+### `TextParsing.fs`
+
 `LambdaCalculus/Parsing/TextParsing.fs`
 
 ```fs
@@ -162,3 +172,19 @@ let (|ValidVariable|_|) (value : char) =
   else
     None
 ```
+
+`LambdaCalculus/Atoms.fs`にて、
+
+```fs
+let VariableAlphabet = "xyzabcdefghijklmnopqrstuvw"
+```
+
+と定義されており、アルファベットである場合は、マッチしたことを表す`Some value`が返却されます。
+
+---
+
+## 設計図
+
+- 入力を受け取る
+- パースする
+  - 文字ごとのリストを作成する
