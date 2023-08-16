@@ -33,13 +33,18 @@ let rec calLambdaDepth e =
 // --------------------
 
 // 出現している変数
-let rec allvar e =
+let rec allVar e =
   match e with
   | Variable(u) -> [ u ]
-  | Abstraction(u, e1) -> u :: allvar(e1)
-  | Application(e1, e2) -> allvar(e1) @ allvar(e2)
+  | Abstraction(u, e1) -> u :: allVar(e1)
+  | Application(e1, e2) -> allVar(e1) @ allVar(e2)
 
 // 出現している自由変数
+let rec freeVar e =
+  match e with
+  | Variable(u) -> [ u ]
+  | Abstraction(u, e1) -> List.filter (fun c -> c <> u ) (freeVar(e1))
+  | Application(e1, e2) -> freeVar(e1) @ freeVar(e2)
 
 // 出現している束縛変数
 
