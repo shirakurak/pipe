@@ -2,6 +2,8 @@
 
 [LambdaCalculusFSharp](https://github.com/WhiteBlackGoose/LambdaCalculusFSharp/tree/main)は、pureなF#で書かれた、ラムダ計算のライブラリです。本記事では、リバースエンジニアリングによる設計図の理解を目的とします。
 
+ラムダ計算の基本的な内容については、[ラムダ計算とコンビネータ論理の基礎](../../02_mathematical_logic/lambda_combinatory_intro.md)も参考のこと。
+
 ## コードリーディング
 
 ### ディレクトリ構造
@@ -59,7 +61,7 @@ tree .
 
 ---
 
-### `Program.fs`
+### 1. `Program.fs`
 
 出発点である、`LambdaCalculusConsole/Program.fs`から読んでいきます。
 
@@ -90,7 +92,7 @@ inputAndRespond ()
 
 ---
 
-### `Parsing.fs`
+### 2. `Parsing.fs`
 
 `LambdaCalculus/LambdaCalculus/Parsing/Parsing.fs`
 
@@ -161,7 +163,7 @@ let rec parseInner s : Result<Expression, string> =
 
 ---
 
-### `TextParsing.fs`
+### 3. `TextParsing.fs`
 
 `LambdaCalculus/Parsing/TextParsing.fs`
 
@@ -180,6 +182,53 @@ let VariableAlphabet = "xyzabcdefghijklmnopqrstuvw"
 ```
 
 と定義されており、アルファベットである場合は、マッチしたことを表す`Some value`が返却されます。
+
+---
+
+### 4. `Program.fs`
+
+今一度、パターンマッチの内部の実装を見てみます。
+
+```fs
+...
+  match parse input with
+  | Ok parsed ->
+    ...
+    match betaReduce parsed with
+    | MayTerminate expr ->
+      printfn $"Beta-reduced: {sprintLambda expr}"
+    | NeverTerminates ->
+      ...
+```
+
+パターンマッチが入れ子の状態となっています。`betaReduce`の実装を見ます。
+
+---
+
+### 5. Atoms.fs
+
+`LambdaCalculus/Atoms.fs`
+
+```fs
+let rec betaReduce expr : ReductionResult =
+  let rec betaReduceInner expr : Expression =
+  ...
+```
+
+`betaReduce`は再帰的に`betaReduceInner`を呼び出している。
+
+```fs
+let rec betaReduceInner expr : Expression =
+    match expr with
+    | Applied(Lambda(x, body), arg) ->
+      ...
+    | Applied(Variable x, arg) ->
+      ...
+    | Applied(maybeLambda, arg) ->
+      ...
+    | Lambda(x, body) -> ...
+    | Variable x -> ...
+```
 
 ---
 
