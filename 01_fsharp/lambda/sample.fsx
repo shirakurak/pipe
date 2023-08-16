@@ -56,6 +56,13 @@ let rec boundVar e =
 // --------------------
 
 // 代入
+let rec substitute e s t =
+  match e with
+  | Variable(u) ->
+    if u = s then Variable(t) else Variable(u)
+  | Abstraction(u, e1) ->
+    if u = s then Abstraction(u, e1) else Abstraction(u, substitute e1 s t)
+  | Application(e1, e2) -> Application(substitute e1 s t, substitute e2 s t)
 
 // α-変換できるか判定
 
