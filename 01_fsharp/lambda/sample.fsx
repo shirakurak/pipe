@@ -47,8 +47,20 @@ let rec freeVar e =
   | Application(e1, e2) -> freeVar(e1) @ freeVar(e2)
 
 // 出現している束縛変数
+let rec boundVar e =
+  match e with
+  | Variable(u) -> []
+  | Abstraction(u, e1) -> u :: boundVar(e1)
+  | Application(e1, e2) -> boundVar(e1) @ boundVar(e2)
 
-// λへの翻訳
-// CalcFormulaみたいに
+// --------------------
+
+// 代入
+
+// α-変換できるか判定
+
+// β-簡約する
+
+// 与えられた文字列がラムダ式か判定する
 
 printfn "goal"
