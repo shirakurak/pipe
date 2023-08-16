@@ -64,6 +64,15 @@ let rec substitute e s t =
     if u = s then Abstraction(u, e1) else Abstraction(u, substitute e1 s t)
   | Application(e1, e2) -> Application(substitute e1 s t, substitute e2 s t)
 
+// ラムダ項に対して、出現しない変数を用意する
+let alphabet = ['a' .. 'z']
+let rec getNewVar e =
+  match e with
+  | Variable(u) -> (List.filter (fun c -> c <> u) alphabet)[0]
+  | Abstraction(u, e1) ->
+    ...
+  | Application(e1, e2) -> ...
+
 // α-変換できるか判定
 // 引数：Lambda, Lambda
 // 戻り値：boolean
@@ -80,7 +89,6 @@ let rec substitute e s t =
 // その長さ + 1分の添字ごとの変数を用意して、その差分の中から、
 // 最も小さい添字の変数を持ってくる
 // それでxを置換して、そのあとで、yをxにする
-// V = [a, b, ...]を用意してもいいか
 // もし全部出てたら、for文で、[a1, b1, ...]を生成する、などとして
 // 特定のラムダ式に出現していない変数を取得してくるという関数を書いてもいいか
 
