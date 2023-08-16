@@ -8,7 +8,7 @@ let rec betaReduce expr : ReductionResult =
   ...
 ```
 
-`betaReduce`は再帰的に`betaReduceInner`を呼び出している。
+`betaReduce`は再帰的に`betaReduceInner`を呼び出しています。
 
 ```fs
 let rec betaReduceInner expr : Expression =

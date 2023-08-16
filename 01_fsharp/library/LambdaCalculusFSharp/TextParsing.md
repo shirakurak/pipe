@@ -9,3 +9,11 @@ let (|ValidVariable|_|) (value : char) =
   else
     None
 ```
+
+`LambdaCalculus/Atoms.fs`にて、
+
+```fs
+let VariableAlphabet = "xyzabcdefghijklmnopqrstuvw"
+```
+
+と定義されており、アルファベットである場合は、マッチしたことを表す`Some value`が返却されます。

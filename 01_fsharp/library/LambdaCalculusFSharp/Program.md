@@ -1,6 +1,6 @@
 # `Program.fs`
 
-出発点である、`LambdaCalculusConsole/Program.fs`を読みます。
+出発点と言える、`LambdaCalculusConsole/Program.fs`を読みます。
 
 ```fs
 open System
@@ -11,7 +11,7 @@ open LambdaCalculus.Atoms
 open LambdaCalculus.ToCSharp
 ```
 
-`System`モジュール(一般的に使われるクラスや関数が定義されている)を除くと、`LambdaCalculus`配下の(一部の)ファイルがインポートされています。
+`System`モジュール（一般的に使われるクラスや関数が定義されている）を除くと、`LambdaCalculus`配下の（一部の）ファイルがインポートされています。
 
 ```fs
 let rec inputAndRespond () =
@@ -25,13 +25,12 @@ let rec inputAndRespond () =
 inputAndRespond ()
 ```
 
-本ファイルでは、1つの再帰的関数が定義されています。この関数はユーザからの入力を受け取り、それを構文解析(`parse`)して、その結果で処理を分岐しています。次に、`parse`メソッドが実装されている、`LambdaCalculus/Parsing/Parsing.fs`を見ていきます。
+本ファイルでは、1つの再帰的関数が定義されています。この関数はユーザからの入力を受け取り、それを構文解析（`parse`）して、その結果で処理を分岐しています。`parse`メソッドについては、`LambdaCalculus/Parsing/Parsing.fs`を見ていきましょう。
 
-今一度、パターンマッチの内部の実装を見てみます。
+`Ok parsed`の中で、さらにパターンマッチの実装があります：
 
 ```fs
 ...
-  match parse input with
   | Ok parsed ->
     ...
     match betaReduce parsed with
@@ -41,4 +40,4 @@ inputAndRespond ()
       ...
 ```
 
-パターンマッチが入れ子の状態となっています。`betaReduce`の実装を見ます。
+パターンマッチが入れ子の状態となっています。`betaReduce`の実装を見ていく必要があります。

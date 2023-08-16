@@ -65,4 +65,4 @@ let rec parseInner s : Result<Expression, string> =
     ...
 ```
 
-リストが空の場合は、エラーとして扱います。2つ目のパターンで使用されている関数`ValidVariable`は、同じ`Parsing`配下の別ファイルで定義されています。
+リストが空の場合は、エラーとして扱います。2つ目のパターンで使用されている関数`ValidVariable`は、同じ`Parsing`配下の`LambdaCalculus/Parsing/TextParsing.fs`で定義されています。
