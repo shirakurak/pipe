@@ -65,12 +65,17 @@ let rec substitute e s t =
   | Application(e1, e2) -> Application(substitute e1 s t, substitute e2 s t)
 
 // ラムダ項に対して、出現しない変数を用意する
-let alphabet = ['a' .. 'z']
+let alphabet = ['a' .. 'z'] // getNewVarの中に入れても
+
+// getというより、本質的なのは、作り出すところか
 let rec getNewVar e =
   match e with
   | Variable(u) -> (List.filter (fun c -> c <> u) alphabet)[0]
   | Abstraction(u, e1) ->
-    ...
+    if List.isEmpty (List.except alphabet allVar(Abstraction(u, e1)))
+      ...
+    then
+      (List.except alphabet allVar(Abstraction(u, e1)))[0]
   | Application(e1, e2) -> ...
 
 // α-変換できるか判定
@@ -90,7 +95,6 @@ let rec getNewVar e =
 // 最も小さい添字の変数を持ってくる
 // それでxを置換して、そのあとで、yをxにする
 // もし全部出てたら、for文で、[a1, b1, ...]を生成する、などとして
-// 特定のラムダ式に出現していない変数を取得してくるという関数を書いてもいいか
 
 // β-簡約する
 
