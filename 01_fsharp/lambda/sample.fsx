@@ -65,51 +65,20 @@ let rec substitute e s t =
   | Application(e1, e2) -> Application(substitute e1 s t, substitute e2 s t)
 
 // 一旦、評価するラムダ式は、小文字のアルファベットのみを使うという制約を置くとする
+// TODO: あとでどうにかした方がいいとは思う
 let rec alphaConvert e f =
     match e, f with
     | Variable(u), Variable(v) -> true
     | Variable(u), Abstraction(x, e1) -> false
     | Variable(u), Application(e1, e2) -> false
     | Abstraction(x, e1), Variable(v) -> false
-    | Abstraction(x, e1), Abstraction(y, e2) -> true // 分岐いる
+    | Abstraction(x, e1), Abstraction(y, e2) ->
+      alphaConvert (substitute e1 x 'A') (substitute e2 y 'A') // Aは、e1にもe2にも出現していない変数
     | Abstraction(x, e1), Application(e2, e3) -> false
     | Application(e1, e2), Variable(v) -> false
     | Application(e1, e2), Abstraction(x, e3) -> false
-    | Application(e1, e2), Application(e3, e4) -> true // 分岐いる
-
-
-
-// ラムダ項に対して、出現しない変数を用意する
-let alphabet = ['a' .. 'z'] // getNewVarの中に入れても
-
-// getというより、本質的なのは、作り出すところか
-// let rec getNewVar e =
-//   match e with
-//   | Variable(u) -> (List.filter (fun c -> c <> u) alphabet)[0]
-//   | Abstraction(u, e1) ->
-//     if List.isEmpty (List.except alphabet allVar(Abstraction(u, e1)))
-//       ...
-//     then
-//       (List.except alphabet allVar(Abstraction(u, e1)))[0]
-//   | Application(e1, e2) -> ...
-
-// α-変換できるか判定
-// 引数：Lambda, Lambda
-// 戻り値：boolean
-// 2つのタイプが一致している必要がある
-// 違かったら、false
-// どちらもvariableなら、true
-// どちらもApplicationなら、各構成要素ごとの比較
-// Abstractionの時が問題
-// λx.E1とλy.E2
-// xがλy.E2の変数として出現していなかったら、λy.E2をλx.E[y/x]として、E1とE2の
-// 同値性を見ればいい
-// 出現していた場合、yをx以外の全然違う変数にする必要がある
-// λy.E2に出現している変数全体の配列を用意
-// その長さ + 1分の添字ごとの変数を用意して、その差分の中から、
-// 最も小さい添字の変数を持ってくる
-// それでxを置換して、そのあとで、yをxにする
-// もし全部出てたら、for文で、[a1, b1, ...]を生成する、などとして
+    | Application(e1, e2), Application(e3, e4) ->
+      alphaConvert e1 e3 && alphaConvert e2 e4
 
 // β-簡約する
 
