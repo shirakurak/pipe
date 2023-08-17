@@ -65,24 +65,17 @@ let rec substitute e s t =
   | Application(e1, e2) -> Application(substitute e1 s t, substitute e2 s t)
 
 // 一旦、評価するラムダ式は、小文字のアルファベットのみを使うという制約を置くとする
-let rec alphaConver e f =
-  match e with
-  | Variable(u) ->
-    match f with
-    | Variable(v) -> printfn "aaa1"
-    | Abstraction(x, e1) -> printfn "bbb1"
-    | Application(e1, e2) -> printfn "ccc1"
-  | Abstraction(x, e1) ->
-    match f with
-    | Variable(v) -> printfn "aaa2"
-    | Abstraction(x, e1) -> printfn "bbb2"
-    | Application(e1, e2) -> printfn "ccc2"
-  | Application(e1, e2) ->
-    match f with
-    | Variable(v) -> printfn "aaa3"
-    | Abstraction(x, e1) -> printfn "bbb3"
-    | Application(e1, e2) -> printfn "ccc3"
-
+let rec alphaConvert e f =
+    match e, f with
+    | Variable(u), Variable(v) -> true
+    | Variable(u), Abstraction(x, e1) -> false
+    | Variable(u), Application(e1, e2) -> false
+    | Abstraction(x, e1), Variable(v) -> false
+    | Abstraction(x, e1), Abstraction(y, e2) -> true // 分岐いる
+    | Abstraction(x, e1), Application(e2, e3) -> false
+    | Application(e1, e2), Variable(v) -> false
+    | Application(e1, e2), Abstraction(x, e3) -> false
+    | Application(e1, e2), Application(e3, e4) -> true // 分岐いる
 
 
 
