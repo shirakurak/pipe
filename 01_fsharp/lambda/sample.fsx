@@ -64,19 +64,41 @@ let rec substitute e s t =
     if u = s then Abstraction(u, e1) else Abstraction(u, substitute e1 s t)
   | Application(e1, e2) -> Application(substitute e1 s t, substitute e2 s t)
 
+// 一旦、評価するラムダ式は、小文字のアルファベットのみを使うという制約を置くとする
+let rec alphaConver e f =
+  match e with
+  | Variable(u) ->
+    match f with
+    | Variable(v) -> printfn "aaa1"
+    | Abstraction(x, e1) -> printfn "bbb1"
+    | Application(e1, e2) -> printfn "ccc1"
+  | Abstraction(x, e1) ->
+    match f with
+    | Variable(v) -> printfn "aaa2"
+    | Abstraction(x, e1) -> printfn "bbb2"
+    | Application(e1, e2) -> printfn "ccc2"
+  | Application(e1, e2) ->
+    match f with
+    | Variable(v) -> printfn "aaa3"
+    | Abstraction(x, e1) -> printfn "bbb3"
+    | Application(e1, e2) -> printfn "ccc3"
+
+
+
+
 // ラムダ項に対して、出現しない変数を用意する
 let alphabet = ['a' .. 'z'] // getNewVarの中に入れても
 
 // getというより、本質的なのは、作り出すところか
-let rec getNewVar e =
-  match e with
-  | Variable(u) -> (List.filter (fun c -> c <> u) alphabet)[0]
-  | Abstraction(u, e1) ->
-    if List.isEmpty (List.except alphabet allVar(Abstraction(u, e1)))
-      ...
-    then
-      (List.except alphabet allVar(Abstraction(u, e1)))[0]
-  | Application(e1, e2) -> ...
+// let rec getNewVar e =
+//   match e with
+//   | Variable(u) -> (List.filter (fun c -> c <> u) alphabet)[0]
+//   | Abstraction(u, e1) ->
+//     if List.isEmpty (List.except alphabet allVar(Abstraction(u, e1)))
+//       ...
+//     then
+//       (List.except alphabet allVar(Abstraction(u, e1)))[0]
+//   | Application(e1, e2) -> ...
 
 // α-変換できるか判定
 // 引数：Lambda, Lambda
