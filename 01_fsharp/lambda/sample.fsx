@@ -69,16 +69,11 @@ let rec substitute e s t =
 let rec alphaConvert e f =
     match e, f with
     | Variable(u), Variable(v) -> true
-    | Variable(u), Abstraction(x, e1) -> false
-    | Variable(u), Application(e1, e2) -> false
-    | Abstraction(x, e1), Variable(v) -> false
     | Abstraction(x, e1), Abstraction(y, e2) ->
       alphaConvert (substitute e1 x 'A') (substitute e2 y 'A') // Aは、e1にもe2にも出現していない変数
-    | Abstraction(x, e1), Application(e2, e3) -> false
-    | Application(e1, e2), Variable(v) -> false
-    | Application(e1, e2), Abstraction(x, e3) -> false
     | Application(e1, e2), Application(e3, e4) ->
       alphaConvert e1 e3 && alphaConvert e2 e4
+    | _ -> false
 
 // β-簡約する
 
