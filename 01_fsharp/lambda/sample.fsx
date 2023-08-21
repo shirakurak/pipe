@@ -67,16 +67,27 @@ let rec substitute e s t =
 // 一旦、評価するラムダ式は、小文字のアルファベットのみを使うという制約を置くとする
 // TODO: あとでどうにかした方がいいとは思う
 let rec alphaConvert e f =
-    match e, f with
-    | Variable(u), Variable(v) -> true
-    | Abstraction(x, e1), Abstraction(y, e2) ->
-      alphaConvert (substitute e1 x 'A') (substitute e2 y 'A') // Aは、e1にもe2にも出現していない変数
-    | Application(e1, e2), Application(e3, e4) ->
-      alphaConvert e1 e3 && alphaConvert e2 e4
-    | _ -> false
+  match e, f with
+  | Variable(u), Variable(v) -> true
+  | Abstraction(x, e1), Abstraction(y, e2) ->
+    alphaConvert (substitute e1 x 'A') (substitute e2 y 'A') // Aは、e1にもe2にも出現していない変数
+  | Application(e1, e2), Application(e3, e4) ->
+    alphaConvert e1 e3 && alphaConvert e2 e4
+  | _ -> false
 
 // β-簡約する
+// 引数: Abstraction Lambda
+// λu.EとE_1という形
+// 返り値は、Lambda
+// E_1の形式によって、帰納的に定義する
+let betaReduct (e: Abstraction) (f: Lambda) =
+  match f with
+  | Variable(v) -> e
+  | Abstraction(v, e1) -> e
+  | Application(e1, e2) -> e
 
 // 与えられた文字列がラムダ式か判定する
+
+// nが与えられたら、対応するチャーチ数のラムダ式を返す
 
 printfn "goal"
