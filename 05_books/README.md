@@ -8,7 +8,7 @@
 | 2023/11/3 | LPICレベル1の教科書と問題集はまだ買うな！失敗しない勉強法とLinux Essentialsの指南書 | TD |
 | 2023/11/3 | 図解まるわかり アルゴリズムのしくみ | TD |
 | 2023/11/4 | Good Code, Bad Code （Chapter5） | TD |
-| TD | TD | TD |
+| 2023/11/5 | スタッフエンジニア　マネジメントを超えるリーダーシップ | TD |
 | TD | TD | TD |
 | TD | TD | TD |
 | TD | TD | TD |
