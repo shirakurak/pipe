@@ -1,7 +1,5 @@
 # Lisp
 
-## Land of Lisp
-
 ```sh
 brew install clisp
 ```
