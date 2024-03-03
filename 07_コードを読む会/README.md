@@ -27,6 +27,10 @@ activerecord の migration にした
 - モブプロ形式
 - Qの目標：何らかのアウトプット
 
+## tips
+
+GitHubの対象のリポジトリで、`.`を押すと、VSCodeは開く
+
 ## 他社の事例
 
 - [社内でOSSコードリーディング会を始めました](https://qiita.com/shifumin/items/e29e05f7ef241f5adcfa)
