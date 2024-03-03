@@ -4,3 +4,5 @@
                           there is a well in front of you.))
                         (attic (you are in the attic.
                           there is a giant welding torch in the corner.))))
+
+(assoc 'garden *nodes*)
