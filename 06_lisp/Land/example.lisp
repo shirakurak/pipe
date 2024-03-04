@@ -6,3 +6,11 @@
                           there is a giant welding torch in the corner.))))
 
 (assoc 'garden *nodes*)
+
+(defparameter *edge* '((living room (garden west door)
+                        (attic upstairs ladder))
+                        (garden (living-room east door))
+                        (attic (living-room downstairs ladder))))
+
+(defun describe-path (edge)
+  `(there is a ,(caddr edge) going ,(cadr edge) from here.))
