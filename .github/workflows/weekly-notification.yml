@@ -1,0 +1,16 @@
+name: Weekly Notification
+
+on:
+  schedule:
+    # 毎週火曜日の22:30に実行する
+    - cron: '10 23 * * 5'
+
+jobs:
+  send-notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      
+      - name: Notify
+        run: echo "今週のまとめを書こう！"
