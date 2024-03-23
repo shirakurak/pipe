@@ -1,0 +1,10 @@
+# 1. 20240316 - 20240322
+
+- [スッキリわかるPythonによる機械学習入門](https://book.impress.co.jp/books/1120101028)を購入し、12章までノートに書きつつ読んだ
+- [Kaggle](https://www.kaggle.com/)
+  - アカウント登録した
+  - [Intro to Programming](https://www.kaggle.com/learn/intro-to-programming)の1つ目だけ触ってみて、Kaggleのサイト上で実行するんだーを知った
+- Kaggleで検索していくつか記事を読んで、どういうものなのかということを知ろうとした（コンペとは？とか）
+- Rebuild.fmでKaggleについて話されている部分を聞いた：[223: Ear Bleeding Pods](https://rebuild.fm/223/)
+- 社内のデータサイエンティストの方に、Kaggle部ってどんな感じです？と質問して、mtgに招待してもらった
+- [regonn&curry.fm](https://podcasters.spotify.com/pod/show/regonn-curry-fm)の第1回を聞いた
