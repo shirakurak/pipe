@@ -8,3 +8,8 @@
 - Rebuild.fmでKaggleについて話されている部分を聞いた：[223: Ear Bleeding Pods](https://rebuild.fm/223/)
 - 社内のデータサイエンティストの方に、Kaggle部ってどんな感じです？と質問して、mtgに招待してもらった
 - [regonn&curry.fm](https://podcasters.spotify.com/pod/show/regonn-curry-fm)の第1回を聞いた
+
+# 2. 20240323 - 20240329
+
+- タイタニックを[これ](https://www.kaggle.com/code/plasticgrammer/kaggle-titanic/notebook)に沿って、やった（流れを掴む）
+- [kaggle-google-ai-assistants-for-data-tasks-with-gemma](https://github.com/shirakurak/kaggle-google-ai-assistants-for-data-tasks-with-gemma)を作り、開始
