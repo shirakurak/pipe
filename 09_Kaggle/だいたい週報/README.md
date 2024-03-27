@@ -13,3 +13,4 @@
 
 - タイタニックを[これ](https://www.kaggle.com/code/plasticgrammer/kaggle-titanic/notebook)に沿って、やった（流れを掴む）
 - [kaggle-google-ai-assistants-for-data-tasks-with-gemma](https://github.com/shirakurak/kaggle-google-ai-assistants-for-data-tasks-with-gemma)を作り、開始
+- [regonn&curry.fm](https://podcasters.spotify.com/pod/show/regonn-curry-fm)の第2-3回を聞いた
