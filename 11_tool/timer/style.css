@@ -1,0 +1,34 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+}
+
+#timer {
+  font-size: 4em;
+  margin-bottom: 20px; /* タイマーとボタンの間のスペース */
+}
+
+button {
+  font-size: 1em;
+  padding: 10px;
+  margin-right: 5px; /* ボタン間のスペース */
+}
+
+/* タイマー終了時のメッセージ用スタイル */
+#timerMessage {
+  font-size: 5em;
+  color: #d00; /* 赤色で目立たせる */
+  margin-top: 30px; /* メッセージの上のスペース */
+  font-weight: bold;
+  text-align: center; /* 中央揃え */
+}
+
+.timer-alert {
+  color: red;
+  font-weight: bold;
+}
