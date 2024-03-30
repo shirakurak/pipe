@@ -1,5 +1,7 @@
 # コードを読む会
 
+本取り組みのアウトプットのためのリポジトリを用意した： [code_reading_mtg](https://github.com/shirakurak/code_reading_mtg)
+
 ## 何を読むか
 
 候補は色々あった
