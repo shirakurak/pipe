@@ -1,4 +1,4 @@
-# 『スッキリわかるPythonによる機械学習入門』を読んだ
+# Draft: 『スッキリわかるPythonによる機械学習入門』を読んだ
 
 書籍情報のサイトは、[こちら](https://book.impress.co.jp/books/1120101028)
 
