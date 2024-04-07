@@ -1,5 +1,7 @@
 # [Python機械学習プログラミング 達人データサイエンティストによる理論と実践](https://book.impress.co.jp/books/1120101017)
 
+リポジトリ：[Python Machine Learning (3rd Ed.) Code Repository](https://github.com/rasbt/python-machine-learning-book-3rd-edition)
+
 ## 第1章 「データから学習する能力」をコンピュータに与える
 
 ### 1.1 データを知識に変える「知能機械」
@@ -15,11 +17,32 @@
 
 #### 1.2.1 「教師あり学習」による未来予測
 
-クラスラベルを予測するための分類
+- 主な目標
+  - ラベル付けされた訓練データからモデルを学習 → 未知のデータや将来のデータを予測できるようにする
+- 教師（あり） = 望ましいラベルが判明している訓練データ 
 
-連続値を予測するための回帰
+例：メールスパムフィルタ（スパムメールとそれ以外を分類）
+
+- 分類（classification）：離散値のクラスラベルを持つ
+- 回帰（regression）：連続値のクラスラベルを持つ
+
+**クラスラベルを予測するための分類**
+
+- 二値分類（binary classification）
+- 多クラス分類（multiclass classification）
+  - 例：手描き文字認識
+
+**連続値を予測するための回帰**
+
+複数の予測変数（特徴量ともいう）と連続値の応答変数（目的変数ともいう）が与えられ、それらの関係を探る
 
 #### 1.2.2 強化学習による対話問題の解決
+
+目的：エージェントを作ること
+
+- エージェント：環境とのやり取りに基づいて性能を改善するシステム
+
+例：チェスエンジン
 
 #### 1.2.3 「教師なし学習」による隠れた構造の発見
 
@@ -28,9 +51,9 @@
 - ラベル付けされていないデータ
 - 構造が不明な（unknown structure）データ
 
-クラスタリングによるグループの発見
+**クラスタリングによるグループの発見**
 
-データ圧縮のための次元削減
+**データ圧縮のための次元削減**
 
 ### 1.3 基本用語と表記法
 
@@ -137,6 +160,15 @@ ADALINE (Adaptive Linear Neuron)
 - パーセプトロンアルゴリズムの改良と見なせる
 
 ### 2.5 勾配降下法によるコスト関数の最小化
+
+cf.
+
+- [勾配降下法とは何か？図解でわかりやすくざっくり解説!](https://aiwannabe.com/gradient-descent-explained/)
+  - gradient descent
+  - 最適化手法の1つ
+  - 関数の最小値（最大値）を見つけるための手法
+- [凸関数と凹関数](http://www.allisone.co.jp/html/Notes/Mathematics/Function/convex-concave-function/index.html)
+- [勾配降下法](https://axa.biopapyrus.jp/deep-learning/gradient_descent_method.html)
 
 #### 2.5.1 ADALINE と Python で実装する
 
