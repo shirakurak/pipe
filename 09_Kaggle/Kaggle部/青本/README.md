@@ -2,6 +2,15 @@
 
 リポジトリ：[Python Machine Learning (3rd Ed.) Code Repository](https://github.com/rasbt/python-machine-learning-book-3rd-edition)
 
+```sh
+$ python --version
+Python 3.10.4
+```
+
+```sh
+pip install scikit-learn
+```
+
 ## 第3章　分類問題 - 機械学習ライブラリ scikit-learn の活用
 
 - よく使われる強力な機械学習アルゴリズムをみていく
@@ -20,4 +29,3 @@
 5. アルゴリズムの調整
 
 ### 3.2 scikit-learn 活用へのファーストステップ：パーセプトロンの訓練
-
